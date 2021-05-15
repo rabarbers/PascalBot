@@ -1,0 +1,7 @@
+{
+  "PascalWalletAddress": "127.0.0.1",
+  "PascalWalletPort": 4003,
+  "PascalBotPASA": 57732,
+  "DiscordBotToken": "Here goes your bot token...",
+  "DiscordServerName": "Pascal"
+}
