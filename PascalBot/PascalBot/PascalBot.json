@@ -2,6 +2,14 @@
   "PascalWalletAddress": "127.0.0.1",
   "PascalWalletPort": 4003,
   "PascalBotPASA": 57732,
-  "DiscordBotToken": "Here goes your bot token...",
-  "DiscordServerName": "Pascal"
+  "PascalBotPASAForNonPascalServers": 56341,
+  "DiscordBotToken": "Here goes your discord bot token...",
+  "DiscordServerName": "Pascal",
+  "BlacklistedDiscordUsers": [
+    "Azazorro"
+  ],
+  "BlacklistedPublicKeys": [
+    "3GhhbouUGF3XMtZTHBosZgPoHexK6BNvtYSffaRLiJj89keRhQV8LBYVNkqPR1TLwhGNHmi3BvXZR31KzrH67S35nEA9E9nF6iLXMP"
+  ],
+  "PasaDistributionPublicKey": "3GhhbomkaVqMthuVyzN8Q3G5M5gogK4C2o6NhF4ri3A4yFFDALg9tNYAVzMqT1BsTaaWnu4zj6ogXGXpBb1qC49PkrZxkf2L65Tskg"
 }

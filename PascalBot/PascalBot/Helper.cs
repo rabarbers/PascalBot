@@ -23,6 +23,22 @@ namespace PascalBot
             return File.WriteAllTextAsync(fileName, text);
         }
 
+        public static async Task<List<ulong>> LoadPasaReceiversAsync(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                var text = await File.ReadAllTextAsync(fileName);
+                return JsonSerializer.Deserialize<List<ulong>>(text);
+            }
+            return new List<ulong>();
+        }
+
+        public static Task SavePasaReceiversAsync(string fileName, List<ulong> users)
+        {
+            var text = JsonSerializer.Serialize(users);
+            return File.WriteAllTextAsync(fileName, text);
+        }
+
         public static bool IsValidPasa(string pasaString, out uint validPasa)
         {
             validPasa = 0;
