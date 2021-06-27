@@ -287,6 +287,13 @@ To get information about available PASA in PascalBot use command:
                             return;
                         }
 
+                        var decodeKeyResponse = await _pascalWallet.DecodePublicKeyAsync(b58PublicKey: pubKey);
+                        if(decodeKeyResponse.Error != null)
+                        {
+                            await discordMessage.Channel.SendMessageAsync("Provided invalid public key!");
+                            return;
+                        }
+
                         var keyAccountsResponse = await _pascalWallet.FindAccountsAsync(b58PublicKey: pubKey);
                         if (keyAccountsResponse.Result != null && keyAccountsResponse.Result.Length > 0 || _pasaReceivers.Contains(discordUserId))
                         {
@@ -312,6 +319,7 @@ To get information about available PASA in PascalBot use command:
                                     ? $"Account {accountToGive} assinged to your public key. Operation ophash = {changeKeyResponse.Result.OpHash}. Wait ~5 minutes till the operation is included in the blockchain."
                                     : changeKeyResponse.Error.Message;
                                 await discordMessage.Channel.SendMessageAsync(message);
+                                return;
                             }
                         }
                         var failureMessage = accountsResponse.Result != null || pendingsResponse != null ? "PascalBot has run out of free accounts. Try again after some time..." : "PascalBot cannot reach Pascal wallet.";
@@ -324,7 +332,7 @@ To get information about available PASA in PascalBot use command:
                         var accountsCountResponse = await _pascalWallet.GetWalletAccountsCountAsync(b58PublicKey: _pasaDistributionPublicKey);
                         if (accountsCountResponse.Result != null)
                         {
-                            message = $"PascalBot has {accountsCountResponse.Result ?? 0} accounts for new users. If you want to donate PASA, change PASA public key to: {_pasaDistributionPublicKey}";
+                            message = $"PascalBot has {accountsCountResponse.Result ?? 0} accounts for new users. Total distributed accounts: {_pasaReceivers.Count}. If you want to donate PASA, change PASA public key to: {_pasaDistributionPublicKey}";
                         }
                         else
                         {
